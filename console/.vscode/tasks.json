@@ -10,6 +10,22 @@
                 "${workspaceFolder}/console.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildDocker",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                },
+                "command": "${workspaceFolder}/scripts/runDocker.ps1 -command debug -srcpath ${workspaceFolder}"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/scripts/runDocker.sh debug"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/scripts/runDocker.sh debug"
+            }
         }
     ]
 }

@@ -23,6 +23,27 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+            "name": ".NET Core Launch DOCKER (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildDocker",
+            "program": "/app/out/console.dll",
+            "args": [],
+            "cwd": "/app/out",
+            "sourceFileMap": {
+                "/app": "${workspaceFolder}"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeCwd": "${workspaceFolder}",
+                "pipeArgs": [
+                    "exec -i console"
+                ],
+                "quoteArgs": false,
+                "debuggerPath": "/vsdbg/vsdbg"
+            }
         }
     ,]
 }
