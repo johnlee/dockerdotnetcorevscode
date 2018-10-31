@@ -15,5 +15,5 @@ RUN dotnet publish -c Debug -o out
 ENTRYPOINT ["/bin/bash", "-c", "sleep infinity"]
 
 # Docker debugger commands (these can be called by runDockerDebug.sh script):
-# docker build --rm -f "docker-debug.Dockerfile" -t console .
-# docker run --rm -it -p 80:80/tcp console
+# docker build --rm -f "docker-debug.Dockerfile" -t webapi .
+# docker run --rm -it -p 80:80/tcp webapi

@@ -1,15 +1,5 @@
 FROM microsoft/dotnet:2.1-runtime AS base
-ENV NUGET_XMLDOC_MODE skip
-
-# Download vsdbg
-WORKDIR /vsdbg
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends unzip
-
-
-# Set working directory
 WORKDIR /app
-EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src

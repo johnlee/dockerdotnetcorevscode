@@ -18,13 +18,13 @@
                 "options": {
                     "cwd": "${workspaceFolder}"
                 },
-                "command": "${workspaceFolder}/scripts/runDocker.ps1 -command debug -srcpath ${workspaceFolder}"
+                "command": "${workspaceFolder}/scripts/runDockerDebug.ps1 -command debug -srcpath ${workspaceFolder}"
             },
             "osx": {
-                "command": "${workspaceFolder}/scripts/runDocker.sh debug"
+                "command": "${workspaceFolder}/scripts/runDockerDebug.sh debug"
             },
             "linux": {
-                "command": "${workspaceFolder}/scripts/runDocker.sh debug"
+                "command": "${workspaceFolder}/scripts/runDockerDebug.sh debug"
             }
         }
     ]

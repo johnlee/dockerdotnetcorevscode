@@ -1,21 +1,31 @@
 # Inspired by: https://github.com/sleemer/docker.dotnet.debug
+$baseImageName = "dotnet21sdk.vsdbg"
+$imageName = "webapi.vsdbg"
+$containerName = "webapi"
+
 killContainers () {
-  docker rm --force $(docker ps -q -a --filter "ancestor=console")
+  docker rm --force $(docker ps -q -a --filter "ancestor=$containerName")
 }
 
 # Removes the Docker image
 removeImage () {
-  docker rmi console
+  docker rmi $imageName
 }
 
 # Builds the Docker image.
 buildImage () {
-  docker build --rm -f "docker-debug.Dockerfile" -t console:latest .
+  if [[ "docker images -q $baseImageName" == "" ]]; then
+    echo "Building $baseImageName"
+    docker build --rm -f "docker-vsdbg.Dockerfile" -t $baseImageName .
+  fi
+  echo "Building $imageName"
+  docker build --rm -f "docker-debug.Dockerfile" -t $imageName .
 }
 
 # Runs a new container
 runContainer () {
-  docker run --rm -d -p 80:80/tcp --name console console:latest
+  echo "Running $containerName"
+  docker run --rm -d -p 80:80/tcp --name $containerName $imageName
 }
 
 # Shows the usage for the script.
@@ -37,10 +47,12 @@ if [ $# -eq 0 ]; then
 else
   case "$1" in
     "cleanup")
+            echo "Starting cleanup"
             killContainers
             removeImage
             ;;
     "debug")
+            echo "Starting debugger"
             killContainers
             buildImage
             runContainer

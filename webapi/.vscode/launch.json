@@ -41,6 +41,46 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+            "name": ".NET Core Launch DOCKER (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildDocker",
+            "program": "/app/out/webapi.dll",
+            "args": [],
+            "cwd": "/app/out",
+            "sourceFileMap": {
+                "/app": "${workspaceFolder}"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeCwd": "${workspaceFolder}",
+                "pipeArgs": [
+                    "exec -i webapi"
+                ],
+                "quoteArgs": false,
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            }
         }
     ,]
 }

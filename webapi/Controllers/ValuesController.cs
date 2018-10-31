@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,18 @@ namespace webapi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            DateTime now = DateTime.Now;
+            string today = now.ToString("dd/MM/yyyy");
+            string[] result = new string[5];
+
+            for (int i = 0; i<5; i++)
+            {
+                string time = DateTime.Now.ToString("h:mm:ss tt");
+                result[i] = time;
+                Thread.Sleep(1000);
+            }
+            
+            return result;
         }
 
         // GET api/values/5

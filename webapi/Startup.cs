@@ -40,6 +40,7 @@ namespace webapi
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
