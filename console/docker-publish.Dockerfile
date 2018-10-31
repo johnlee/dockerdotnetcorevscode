@@ -1,13 +1,4 @@
 FROM microsoft/dotnet:2.1-runtime AS base
-ENV NUGET_XMLDOC_MODE skip
-
-# Download vsdbg
-WORKDIR /vsdbg
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends unzip
-
-
-# Set working directory
 WORKDIR /app
 EXPOSE 80
 
@@ -26,3 +17,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "console.dll"]
+
+# Run
+# docker run --rm -it -p 80:80/tcp console:latest
