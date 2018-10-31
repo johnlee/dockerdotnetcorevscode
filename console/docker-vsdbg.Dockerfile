@@ -13,3 +13,4 @@ ENTRYPOINT ["/bin/bash"]
 
 # Docker debugger commands (these can be called by runDocker.sh script):
 # docker build --rm -f "docker-vsdbg.Dockerfile" -t dotnet21sdk.vsdbg .
+# docker run --rm -it -p 80:80/tcp dotnet21sdk.vsdbg

@@ -15,4 +15,8 @@ RUN dotnet publish "console.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+
 ENTRYPOINT ["dotnet", "console.dll"]
+
+# Run
+# docker run --rm -it -p 80:80/tcp console:latest
